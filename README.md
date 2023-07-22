@@ -1,7 +1,7 @@
 # Personal-Portfolio
 > This is personal portfolio website.
 
-![Portfolio](https://raw.github.com/jojoalkhrissat/portfolio-react/master/src/assets/port.png)
+![Portfolio](https://raw.github.com/yousef-alkhrissat/portfolio-react/master/src/assets/port.png)
 
 ## Built With
 
@@ -28,9 +28,9 @@
 
 - Choose a folder in your local machine where you want this repository to be copied
 
-- Clone this [repository](https://github.com/jojoalkhrissat/portfolio-react) to your local machine 
+- Clone this [repository](https://github.com/yousef-alkhrissat/portfolio-react) to your local machine 
 - ```
-  git clone git@github.com:jojoalkhrissat/portfolio-react.git
+  git clone git@github.com:yousef-alkhrissat/portfolio-react.git
   ```
 
 - Navigate to `cd portfolio-react`  directory.
@@ -49,12 +49,12 @@
 
 :man: **Yousef Alkhrissat**
 
-- [GitHub](https://github.com/jojoalkhrissat)
+- [GitHub](https://github.com/yousef-alkhrissat)
 - [LinkedIn](https://www.linkedin.com/in/yousef-alkhrissat/)
 
 ## 🤝 Contributing
 - Contributions, issues, and feature requests are welcome!
-- Feel free to check the [issues page](https://github.com/jojoalkhrissat/portfolio-react/issues).
+- Feel free to check the [issues page](https://github.com/yousef-alkhrissat/portfolio-react/issues).
 
 # Show your support
 Give a ⭐ if you like this project!
