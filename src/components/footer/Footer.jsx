@@ -22,7 +22,7 @@ const Footer = () => {
         <li><a href="#contact">Contact</a></li>
       </ul>
       <div className="footer__socials">
-      <a href="https://www.linkedin.com/in/yousef-alkhrissat-4833ba127/" target="_blank" rel="noreferrer" ><BsLinkedin /></a>
+      <a href="https://www.linkedin.com/in/yousef-alkhrissat/" target="_blank" rel="noreferrer" ><BsLinkedin /></a>
       <a href="https://github.com/jojoalkhrissat" target="_blank" rel="noreferrer" ><FaGithub /></a>
       <a href="https://facebook.com/joseph.khraistopher/" target="_blank" rel="noreferrer" ><FaFacebook /></a>
       </div>

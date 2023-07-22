@@ -50,7 +50,7 @@
 :man: **Yousef Alkhrissat**
 
 - [GitHub](https://github.com/jojoalkhrissat)
-- [LinkedIn](https://www.linkedin.com/in/yousef-alkhrissat-4833ba127/)
+- [LinkedIn](https://www.linkedin.com/in/yousef-alkhrissat/)
 
 ## 🤝 Contributing
 - Contributions, issues, and feature requests are welcome!
