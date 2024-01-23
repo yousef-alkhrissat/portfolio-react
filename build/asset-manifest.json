@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/static/css/main.c9d49307.css",
-    "main.js": "/static/js/main.920c354e.js",
+    "main.js": "/static/js/main.acf0450b.js",
     "static/media/me.jpg": "/static/media/me.0c7dc435d5f9b845edc0.jpg",
-    "static/media/Yousef-Alkhrissat-cv.pdf": "/static/media/Yousef-Alkhrissat-cv.34a0a6afb3049249c533.pdf",
+    "static/media/Yousef-Alkhrissat-cv.pdf": "/static/media/Yousef-Alkhrissat-cv.27b0badea941d813c277.pdf",
     "index.html": "/index.html",
     "main.c9d49307.css.map": "/static/css/main.c9d49307.css.map",
-    "main.920c354e.js.map": "/static/js/main.920c354e.js.map"
+    "main.acf0450b.js.map": "/static/js/main.acf0450b.js.map"
   },
   "entrypoints": [
     "static/css/main.c9d49307.css",
-    "static/js/main.920c354e.js"
+    "static/js/main.acf0450b.js"
   ]
 }
