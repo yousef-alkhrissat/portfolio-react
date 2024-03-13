@@ -20,7 +20,7 @@ const Intro = () => {
             <article className="about__card">
               <FaAward className="about__icon" />
               <h5>Experience</h5>
-              <small>4 years</small>
+              <small>5 years</small>
             </article>
             <article className="about__card">
               <VscFolderLibrary className="about__icon" />
@@ -28,7 +28,7 @@ const Intro = () => {
               <small>20+ Completed Projects</small>
             </article>
           </div>
-          <p>Hi there! I'm Yousef, a back-end developer with 4 years of
+          <p>Hi there! I'm Yousef, a back-end developer with 5 years of
 experience based in Amman, Jordan. My specialty is developing
 robust and scalable server-side applications using the Node.js
 ecosystem. My tech stack includes NodeJs, NestJs, ExpressJs, Mysql,
