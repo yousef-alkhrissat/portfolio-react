@@ -13,22 +13,51 @@
   }
   
   .contact__option {
-    background: var(--color-bg-variant);
-    padding: 1.2rem;
+    background: linear-gradient(135deg, var(--color-bg-variant) 0%, rgba(26, 26, 46, 0.8) 100%);
+    padding: 1.5rem;
     border-radius: 1.2rem;
     text-align: center;
-    border: 1px solid transparent;
+    border: 1px solid rgba(0, 212, 255, 0.2);
     transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-sm);
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(123, 44, 191, 0.1) 100%);
+      opacity: 0;
+      transition: var(--transition);
+    }
   
     &:hover {
-      background: transparent;
-      border-color: var(--color-primary-variant);
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.15) 0%, rgba(123, 44, 191, 0.15) 100%);
+      border-color: var(--color-primary);
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+
+      &::before {
+        opacity: 1;
+      }
     }
   }
   
   .contact__option-icon {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     margin-bottom: 0.5rem;
+    color: var(--color-primary);
+    transition: var(--transition);
+  }
+
+  .contact__option:hover .contact__option-icon {
+    transform: scale(1.2);
+    color: var(--color-secondary);
   }
   
   .contact__option {
@@ -61,10 +90,23 @@
     width: 100%;
     padding: 1.5rem;
     border-radius: 0.5rem;
-    background: transparent;
-    border: 2px solid var(--color-primary-variant);
+    background: linear-gradient(135deg, rgba(26, 26, 46, 0.5) 0%, rgba(10, 10, 26, 0.5) 100%);
+    border: 2px solid rgba(0, 212, 255, 0.2);
     resize: none;
     color: var(--color-white);
+    transition: var(--transition);
+    backdrop-filter: blur(10px);
+
+    &:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+      background: linear-gradient(135deg, rgba(26, 26, 46, 0.8) 0%, rgba(10, 10, 26, 0.8) 100%);
+    }
+
+    &::placeholder {
+      color: var(--color-light);
+    }
   }
   
   @media screen and (max-width: 1024px) {

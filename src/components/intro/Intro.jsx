@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaAward } from 'react-icons/fa';
 import { VscFolderLibrary } from 'react-icons/vsc';
+import { FaProjectDiagram } from 'react-icons/fa';
 import ME from '../../assets/me.jpg';
 import './intro.scss';
 
@@ -20,20 +21,32 @@ const Intro = () => {
             <article className="about__card">
               <FaAward className="about__icon" />
               <h5>Experience</h5>
-              <small>5 years</small>
+              <small>6+ years</small>
             </article>
             <article className="about__card">
               <VscFolderLibrary className="about__icon" />
               <h5>Projects</h5>
               <small>20+ Completed Projects</small>
             </article>
+            <article className="about__card">
+              <FaProjectDiagram className="about__icon" />
+              <h5>PM & BA</h5>
+              <small>Agile & Strategic</small>
+            </article>
           </div>
-          <p>Hi there! I'm Yousef, a back-end developer with 5 years of
-experience based in Amman, Jordan. My specialty is developing
-robust and scalable server-side applications using the Node.js
-ecosystem. My tech stack includes NodeJs, NestJs, ExpressJs, Mysql,
-PostegreSql, Oracle Database, Linux server, Apache server, Nginx
-Server, and docker.</p>
+          <p>Hi there! I'm Yousef, a Full-stack Developer with 6+ years of experience, 
+          specializing in both technical development and strategic project management. 
+          Based in Amman, Jordan, I bring a unique blend of technical expertise and 
+          business acumen to every project.</p>
+          <p>As a developer, I excel at building robust and scalable applications using 
+          the Node.js ecosystem, including NodeJs, NestJs, ExpressJs, along with various 
+          databases (MySQL, PostgreSQL, Oracle), and DevOps tools (Docker, Nginx, Apache).</p>
+          <p>As a Project Manager and Business Analyst, I've successfully led cross-functional 
+          teams, managed project lifecycles from conception to delivery, conducted stakeholder 
+          analysis, created comprehensive project documentation, and ensured alignment between 
+          business objectives and technical solutions. I'm skilled in Agile methodologies, 
+          requirements gathering, process improvement, and delivering projects on time and 
+          within budget.</p>
           <a href="#contact" className="btn btn-primary">Let's Talk</a>
         </div>
       </div>

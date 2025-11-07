@@ -94,6 +94,51 @@ const Experience = () => {
             </article>
           </div>
         </div>
+        <div className="experience__pm">
+          <h3>Project Management & Business Analysis</h3>
+          <div className="experience__content">
+            <article className="experience__details">
+              <BsFillPatchCheckFill className="experience__details-icon" />
+              <h4>Agile/Scrum</h4>
+            </article>
+            <article className="experience__details">
+              <BsFillPatchCheckFill className="experience__details-icon" />
+              <h4>Stakeholder Management</h4>
+            </article>
+            <article className="experience__details">
+              <BsFillPatchCheckFill className="experience__details-icon" />
+              <h4>Requirements Gathering</h4>
+            </article>
+            <article className="experience__details">
+              <BsFillPatchCheckFill className="experience__details-icon" />
+              <h4>Project Planning</h4>
+            </article>
+            <article className="experience__details">
+              <BsFillPatchCheckFill className="experience__details-icon" />
+              <h4>Risk Management</h4>
+            </article>
+            <article className="experience__details">
+              <BsFillPatchCheckFill className="experience__details-icon" />
+              <h4>Process Improvement</h4>
+            </article>
+            <article className="experience__details">
+              <BsFillPatchCheckFill className="experience__details-icon" />
+              <h4>Documentation</h4>
+            </article>
+            <article className="experience__details">
+              <BsFillPatchCheckFill className="experience__details-icon" />
+              <h4>Jira/Confluence</h4>
+            </article>
+            <article className="experience__details">
+              <BsFillPatchCheckFill className="experience__details-icon" />
+              <h4>Business Process Modeling</h4>
+            </article>
+            <article className="experience__details">
+              <BsFillPatchCheckFill className="experience__details-icon" />
+              <h4>Data Analysis</h4>
+            </article>
+          </div>
+        </div>
       </div>
     </section>
   )

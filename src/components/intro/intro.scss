@@ -8,9 +8,30 @@
     width: 100%;
     aspect-ratio: 1/1;
     border-radius: 2rem;
-    background: linear-gradient(45deg, transparent, var(--color-primary), transparent);
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
     display: grid;
     place-items: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 150%;
+      height: 150%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      animation: rotate 3s linear infinite;
+    }
+  }
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
   }
   
   .about__me-image {
@@ -18,30 +39,55 @@
     overflow: hidden;
     transform: rotate(10deg);
     transition: var(--transition);
+    position: relative;
+    z-index: 1;
+    box-shadow: var(--shadow-lg);
   
     &:hover {
-      transform: rotate(0);
+      transform: rotate(0deg) scale(1.05);
     }
   }
   
   .about__cards {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
   }
   
   .about__card {
-    background: var(--color-bg-variant);
-    border: 1px solid transparent;
+    background: linear-gradient(135deg, var(--color-bg-variant) 0%, rgba(26, 26, 46, 0.8) 100%);
+    border: 1px solid rgba(0, 212, 255, 0.2);
     border-radius: 1rem;
     padding: 2rem;
     text-align: center;
     transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-sm);
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+      opacity: 0;
+      transition: var(--transition);
+    }
   
     &:hover {
-      background: transparent;
-      border-color: var(--color-primary-variant);
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.15) 0%, rgba(123, 44, 191, 0.15) 100%);
+      border-color: var(--color-primary);
       cursor: default;
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+
+      &::before {
+        opacity: 1;
+      }
     }
   }
   
@@ -72,14 +118,19 @@
       grid-template-columns: 1fr;
       gap: 0;
     }
-  
+
     .about__me {
       width: 50%;
       margin: 2rem auto 4rem;
     }
-  
+
     .about__content p {
       margin: 1rem 0 1.5rem;
+    }
+
+    .about__cards {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.2rem;
     }
   }
   
@@ -90,7 +141,7 @@
     }
   
     .about__cards {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 1rem;
     }
   
