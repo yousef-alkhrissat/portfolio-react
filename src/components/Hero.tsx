@@ -70,7 +70,7 @@ const Hero = () => {
             transition={{ duration: 0.5, delay: 0.7 }}
           >
             <a href="#contact" className={styles.primaryBtn}>
-              Get In Touch
+              <span>Get In Touch</span>
             </a>
             <a href="#experience" className={styles.secondaryBtn}>
               View My Work
