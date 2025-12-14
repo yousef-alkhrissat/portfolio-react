@@ -1,0 +1,7 @@
+# robots.txt for Yousef Alkhrissat Portfolio
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://yousef-alkhrissat.dev/sitemap.xml
+

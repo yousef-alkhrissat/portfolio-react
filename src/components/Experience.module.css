@@ -1,0 +1,246 @@
+.experience {
+  padding: var(--section-padding) 0;
+}
+
+.container {
+  width: var(--container-width);
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.sectionNumber {
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  color: var(--accent-cyan);
+}
+
+.sectionTitle {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.line {
+  flex: 1;
+  height: 1px;
+  background: var(--border-color);
+  max-width: 300px;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 2rem;
+}
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-left: 2px solid var(--border-color);
+}
+
+.tab {
+  padding: 0.875rem 1.25rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  text-align: left;
+  transition: var(--transition-fast);
+  position: relative;
+  z-index: 1;
+  height: 48px;
+}
+
+.tab:hover {
+  color: var(--accent-cyan);
+  background: rgba(0, 245, 212, 0.05);
+}
+
+.tab.active {
+  color: var(--accent-cyan);
+}
+
+.tabIndicator {
+  position: absolute;
+  left: -2px;
+  width: 2px;
+  height: 48px;
+  background: var(--accent-cyan);
+  transition: top 0.3s ease;
+  box-shadow: var(--glow-cyan);
+}
+
+.details {
+  padding-left: 1rem;
+}
+
+.jobTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.companyName {
+  color: var(--accent-cyan);
+}
+
+.meta {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.metaItem svg {
+  color: var(--accent-cyan);
+}
+
+.responsibilities {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.responsibilities li {
+  display: flex;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.bullet {
+  color: var(--accent-cyan);
+  flex-shrink: 0;
+}
+
+.technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tech {
+  padding: 0.375rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent-cyan);
+  background: rgba(0, 245, 212, 0.1);
+  border-radius: 4px;
+}
+
+/* Timeline (Mobile) */
+.timeline {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .content {
+    display: none;
+  }
+
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--border-color);
+  }
+
+  .timelineItem {
+    position: relative;
+    padding-bottom: 2.5rem;
+  }
+
+  .timelineItem:last-child {
+    padding-bottom: 0;
+  }
+
+  .timelineDot {
+    position: absolute;
+    left: -2rem;
+    top: 0;
+    width: 16px;
+    height: 16px;
+    background: var(--bg-primary);
+    border: 2px solid var(--accent-cyan);
+    border-radius: 50%;
+    transform: translateX(-1px);
+    box-shadow: var(--glow-cyan);
+  }
+
+  .timelineContent {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+
+  .timelineContent h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+
+  .timelineContent h4 {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--accent-cyan);
+    margin-bottom: 0.5rem;
+  }
+
+  .timelinePeriod {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+  }
+
+  .timelineContent ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .timelineContent li {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .timelineContent li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: var(--accent-cyan);
+  }
+}
+
