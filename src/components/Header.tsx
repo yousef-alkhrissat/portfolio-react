@@ -62,7 +62,7 @@ const Header = () => {
         </ul>
 
         <motion.a
-          href="/Yousef-Alkhrissat-CV.pdf"
+          href="/Yousef Alkhrissat - CV.pdf"
           className={styles.resumeBtn}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -112,7 +112,7 @@ const Header = () => {
                 ))}
               </ul>
               <a
-                href="/Yousef-Alkhrissat-CV.pdf"
+                href="/Yousef Alkhrissat - CV.pdf"
                 className={styles.mobileResumeBtn}
                 download
               >
