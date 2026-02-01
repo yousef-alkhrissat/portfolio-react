@@ -70,7 +70,7 @@ const Skills = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
         >
-          <span className={styles.sectionNumber}>03.</span>
+          <span className={styles.sectionNumber}>04.</span>
           <h2 className={styles.sectionTitle}>Skills & Technologies</h2>
           <div className={styles.line} />
         </motion.div>
