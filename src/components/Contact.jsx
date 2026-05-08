@@ -42,13 +42,33 @@ const contacts = [
 ]
 
 export default function Contact() {
-  const [sent, setSent] = useState(false)
+  const [status, setStatus] = useState('idle') // idle | loading | success | error
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault()
-    setSent(true)
-    setTimeout(() => { setSent(false); e.target.reset() }, 3500)
+    setStatus('loading')
+
+    const formData = new FormData(e.target)
+    formData.append('access_key', '858177ec-ae75-49e2-ad96-5923a1b38a05')
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData })
+      const data = await res.json()
+      if (data.success) {
+        setStatus('success')
+        e.target.reset()
+        setTimeout(() => setStatus('idle'), 4000)
+      } else {
+        setStatus('error')
+        setTimeout(() => setStatus('idle'), 4000)
+      }
+    } catch {
+      setStatus('error')
+      setTimeout(() => setStatus('idle'), 4000)
+    }
   }
+
+  const busy = status === 'loading' || status === 'success'
 
   return (
     <section id="contact" aria-label="Contact">
@@ -102,15 +122,27 @@ export default function Contact() {
                 <label htmlFor="message">Message</label>
                 <textarea id="message" name="message" placeholder="Tell me about your project or opportunity..." required />
               </div>
-              <button type="submit" className="btn-submit" disabled={sent}
-                style={sent ? { background: 'linear-gradient(135deg,#10b981,#059669)' } : undefined}
+              {status === 'error' && (
+                <p style={{ color: '#f87171', fontSize: '0.875rem', marginBottom: '0.75rem' }}>
+                  Something went wrong. Please try again or email me directly.
+                </p>
+              )}
+              <button type="submit" className="btn-submit" disabled={busy}
+                style={status === 'success' ? { background: 'linear-gradient(135deg,#10b981,#059669)' } : undefined}
               >
-                {sent ? (
+                {status === 'success' ? (
                   <>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                       <polyline points="20 6 9 17 4 12"/>
                     </svg>
                     Message Sent!
+                  </>
+                ) : status === 'loading' ? (
+                  <>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ animation: 'spin 1s linear infinite' }}>
+                      <path d="M12 2a10 10 0 1 0 10 10" strokeLinecap="round"/>
+                    </svg>
+                    Sending…
                   </>
                 ) : (
                   <>

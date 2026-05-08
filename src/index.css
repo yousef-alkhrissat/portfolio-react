@@ -427,6 +427,7 @@ section { padding: 110px 0; }
   animation: rotateBorder 8s linear infinite reverse;
 }
 @keyframes rotateBorder { 0%{transform:rotate(0deg)} 100%{transform:rotate(360deg)} }
+@keyframes spin { to { transform: rotate(360deg) } }
 
 .hero-photo-frame img {
   position: relative;
