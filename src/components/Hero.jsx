@@ -5,6 +5,8 @@ const TITLES = [
   'Node.js / NestJS Specialist',
   'Microservices Architect',
   'Distributed Systems Engineer',
+  'AI-First Engineer',
+  'Product Collaborator',
   'TypeScript Enthusiast',
 ]
 
@@ -124,9 +126,9 @@ export default function Hero() {
             <span className="cursor" />
           </div>
           <p className="hero-tagline">
-            Senior Backend Engineer with 6+ years building scalable, distributed systems
-            across telecom, fintech, SaaS, and social platforms — from Jordan to global remote teams
-            across the US, EU, and MENA.
+            Senior Backend Engineer with 6+ years architecting scalable APIs, microservices, and
+            real-time platforms across telecom, EdTech, SaaS, and social products — bridging business
+            intent and technical execution for teams across the US, EU, and MENA.
           </p>
           <div className="hero-cta">
             <a href="#contact" className="btn-primary">

@@ -7,30 +7,32 @@ const jobs = [
     current: true,
     company: 'Axelerated Solutions',
     location: 'Amman, Jordan',
-    desc: 'Building telecom and real-time communication systems. Architecting multi-tenant NestJS microservices integrated with Asterisk VoIP, Redis pub/sub, RabbitMQ message queues, and MySQL — delivering high-availability solutions for enterprise telecom clients.',
-    tags: ['NestJS', 'Asterisk', 'Multi-Tenant', 'Redis', 'RabbitMQ', 'MySQL'],
+    desc: 'Architecting multi-tenant backend infrastructure with NestJS and Asterisk, enforcing strict data isolation while optimizing resource allocation across client environments. Engineered real-time call-state tracking with Redis TTL and session strategies to cut database overhead during peak traffic, and streamlined event-driven processing with RabbitMQ and MySQL for high-volume telecom data. Led a modular redesign across VoIP, Ticketing, and Social modules, audited feature requests with product stakeholders to keep engineering effort on core workflows, and trained QA engineers on automation, performance, and manual testing.',
+    tags: ['NestJS', 'Asterisk', 'Multi-Tenant', 'Redis', 'RabbitMQ', 'MySQL', 'VoIP'],
   },
   {
     date: 'Dec 2024 — Feb 2025',
     role: 'Fullstack Software Engineer',
-    company: 'FGI Worldwide · Remote (US)',
+    company: 'FGI Worldwide',
+    location: 'Remote (US)',
     desc: 'Developed and maintained fullstack features for a US-based client on a fully remote contract engagement. Implemented PHP Laravel backend APIs and React.js frontend components, collaborating asynchronously across time zones.',
     tags: ['Laravel', 'React.js', 'PHP', 'Remote'],
   },
   {
     date: 'May 2024 — Dec 2024',
     role: 'Senior Fullstack Software Engineer',
-    company: 'UBA (Unified Business Applications)',
+    company: 'UBA (United Business Applications)',
     location: 'Amman, Jordan',
-    desc: 'Led backend architecture of a procurement SaaS platform. Achieved a 30% API performance improvement through strategic caching, query optimization, and Elasticsearch-powered search. Built scalable GraphQL APIs, event-driven pipelines with RabbitMQ, and multi-cloud deployments on AWS, Oracle Cloud, and DigitalOcean.',
-    tags: ['GraphQL', 'Elasticsearch', 'Redis', 'RabbitMQ', 'AWS', 'Oracle Cloud'],
+    desc: 'Built core backend features and React modules for high-volume procurement SaaS platforms, keeping client workflows and system capabilities aligned. Delivered high-performance GraphQL APIs and optimized data retrieval pipelines with Elasticsearch and Redis, reducing API response times by 30% platform-wide, and designed a decoupled microservices architecture over RabbitMQ to isolate heavy transaction loads.',
+    tags: ['GraphQL', 'Elasticsearch', 'Redis', 'RabbitMQ', 'React.js', 'Microservices'],
   },
   {
     date: 'Nov 2023 — May 2024',
     role: 'Fullstack Software Engineer',
     company: 'Baaz',
     location: 'Amman, Jordan',
-    desc: 'Engineered core features for a social platform with hybrid REST/GraphQL APIs, real-time feeds powered by Redis and Elasticsearch, and dual-database architecture using PostgreSQL for structured data and MongoDB for flexible content storage.',
+    note: 'Role ended — company shut down its regional platform operations',
+    desc: 'Engineered scalable backend and frontend features for a high-concurrency social platform using REST and GraphQL APIs. Improved scaling and data availability through Redis caching layers and optimized Elasticsearch indices, while maintaining complex PostgreSQL and MongoDB data models across fast-evolving user features.',
     tags: ['REST', 'GraphQL', 'Redis', 'Elasticsearch', 'PostgreSQL', 'MongoDB'],
   },
   {
@@ -38,39 +40,39 @@ const jobs = [
     role: 'Senior Software Engineer',
     company: 'Hello World Kids',
     location: 'Amman, Jordan',
-    desc: 'Delivered full-cycle backend engineering on Laravel-based platform with AWS infrastructure. Built automated CI/CD pipelines, integrated RabbitMQ for asynchronous job processing, and implemented GraphQL APIs for mobile and web clients.',
-    tags: ['Laravel', 'AWS', 'RabbitMQ', 'GraphQL', 'CI/CD'],
+    desc: 'Conceived and architected an interactive coding-platform feature (modeled after LeetCode) that gamifies learning and evaluates student code submissions in real time. Led backend development on Laravel and AWS, running student scripts safely on isolated infrastructure, and used RabbitMQ queues to absorb heavy asynchronous evaluation workloads while holding sub-second responsiveness during peak classroom hours.',
+    tags: ['Laravel', 'AWS', 'RabbitMQ', 'Code Execution', 'EdTech'],
   },
   {
     date: 'Feb 2022 — Nov 2022',
     role: 'Senior Software Engineer',
     company: 'Rhinosoft',
     location: 'Amman, Jordan',
-    desc: 'Led backend development using NestJS and Express microservices with MongoDB, Redis caching, Elasticsearch full-text search, and RabbitMQ messaging. Mentored junior engineers and conducted code reviews to uphold engineering quality.',
-    tags: ['NestJS', 'Express', 'MongoDB', 'Redis', 'Elasticsearch', 'RabbitMQ'],
+    desc: 'Resolved a critical DHL international shipping bottleneck for Zalatimo.com by architecting a dynamic, locale-triggered calculation matrix (Fixed Fee × Weight) that bypassed rigid third-party billing constraints. Built Node.js microservices with NestJS and Express on MongoDB, Redis, and RabbitMQ, led code reviews and mentored junior engineers, and trained QA engineers on automation, performance, and manual testing.',
+    tags: ['NestJS', 'Express', 'MongoDB', 'Redis', 'RabbitMQ', 'Mentoring'],
   },
   {
     date: 'Nov 2021 — Feb 2022',
     role: 'Software Engineer',
     company: 'Luminus Education Group',
     location: 'Amman, Jordan',
-    desc: 'Built and maintained internal enterprise systems using Node.js, streamlining administrative workflows for one of Jordan\'s leading private education groups.',
-    tags: ['Node.js', 'Internal Systems'],
+    desc: 'Developed internal systems on the Node.js stack, automating business processes and delivering platform features that improved operational workflows for one of Jordan\'s leading private education groups.',
+    tags: ['Node.js', 'Internal Systems', 'Automation'],
   },
   {
     date: 'Nov 2019 — Nov 2021',
     role: 'Software Engineer',
     company: 'Aspire IT Services',
     location: 'Amman, Jordan',
-    desc: 'Worked across the full stack building NestJS and Express backends with React.js frontends. Managed multi-database environments (PostgreSQL, MongoDB), implemented Redis caching strategies, and set up RabbitMQ message brokers for async workflows.',
-    tags: ['NestJS', 'Express', 'React.js', 'PostgreSQL', 'MongoDB', 'Redis'],
+    desc: 'Served as a foundational technical and business strategist for EPIC Academy, defining both the product\'s functional architecture and its underlying software specifications. Engineered core full-stack systems with NestJS, Express, and React, designed PostgreSQL and MongoDB schemas alongside Redis/RabbitMQ workflows for high-concurrency real-time classrooms, and ran QA automation with Selenium (Java) plus Postman/JMeter for API and load testing.',
+    tags: ['NestJS', 'Express', 'React.js', 'PostgreSQL', 'MongoDB', 'Selenium', 'JMeter'],
   },
   {
     date: 'Feb 2019 — Nov 2019',
     role: 'Software Engineer',
     company: 'NCIT Solutions',
     location: 'Amman, Jordan',
-    desc: 'Started professional career building real-time web applications with Node.js, React, and NestJS. Implemented WebSocket-based features for live data streaming and Redis for session and cache management.',
+    desc: 'Started professional career building applications with Node.js, React, and NestJS, implementing real-time features on WebSockets and Redis.',
     tags: ['Node.js', 'React', 'NestJS', 'WebSockets', 'Redis'],
   },
 ]
@@ -87,7 +89,11 @@ function TimelineItem({ job, index }) {
           {job.role}
           {job.current && <span className="badge-current">Current</span>}
         </div>
-        <div className="timeline-company">{job.company}</div>
+        <div className={`timeline-company${job.note ? ' has-note' : ''}`}>
+          {job.company}
+          {job.location && <span className="timeline-location"> · {job.location}</span>}
+        </div>
+        {job.note && <div className="timeline-note">{job.note}</div>}
         <p className="timeline-desc">{job.desc}</p>
         <div className="timeline-tags">
           {job.tags.map(t => <span className="tl-tag" key={t}>{t}</span>)}

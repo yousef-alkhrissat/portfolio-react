@@ -523,6 +523,9 @@ section { padding: 110px 0; }
 }
 .about-badge svg { width: 16px; height: 16px; }
 
+.about-badges { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+.about-badges .about-badge { margin-top: 0; }
+
 .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 
 .stat-card {
@@ -678,6 +681,9 @@ section { padding: 110px 0; }
 .timeline-date { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-cyan); letter-spacing: 0.1em; margin-bottom: 8px; }
 .timeline-role { font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
 .timeline-company { font-size: 0.9rem; font-weight: 600; color: var(--accent-blue); margin-bottom: 14px; }
+.timeline-company.has-note { margin-bottom: 5px; }
+.timeline-location { font-weight: 500; color: var(--text-secondary); }
+.timeline-note { font-size: 0.76rem; font-style: italic; color: var(--text-secondary); opacity: 0.75; margin-bottom: 14px; }
 .timeline-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7; }
 .timeline-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
 .timeline-item:nth-child(odd) .timeline-tags  { justify-content: flex-end; }

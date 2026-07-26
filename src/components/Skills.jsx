@@ -57,6 +57,31 @@ const groups = [
     ],
   },
   {
+    icon: '🧪', title: 'QA Automation & Testing',
+    tags: [
+      { icon: <i className="devicon-selenium-original colored" />, label: 'Selenium (Java)' },
+      { icon: <i className="devicon-postman-plain colored" />, label: 'Postman' },
+      { label: 'JMeter' },
+      { label: 'Performance Testing' },
+      { label: 'Regression Testing' },
+      { label: 'QA Training' },
+    ],
+  },
+  {
+    icon: '🤖', title: 'AI Engineering & Automation',
+    tags: [
+      { label: 'LLM API Integration' },
+      { label: 'Claude / OpenAI APIs' },
+      { label: 'Prompt Engineering' },
+      { label: 'Tool & Function Calling' },
+      { label: 'MCP (Model Context Protocol)' },
+      { label: 'AI Agents' },
+      { label: 'Agentic Coding' },
+      { label: 'AI-Assisted Testing' },
+      { label: 'Workflow Automation' },
+    ],
+  },
+  {
     icon: '🏗️', title: 'Architecture & Practices', wide: true,
     tags: [
       { label: 'Microservices' },
@@ -67,6 +92,8 @@ const groups = [
       { label: 'Real-Time Systems' },
       { label: 'Domain-Driven Design' },
       { label: 'SOLID Principles' },
+      { label: 'Requirements Validation' },
+      { label: 'Technical Mentoring' },
     ],
   },
 ]

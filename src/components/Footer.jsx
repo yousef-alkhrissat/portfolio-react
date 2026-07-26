@@ -28,7 +28,7 @@ export default function Footer() {
           </div>
 
           <div className="footer-copy">
-            &copy; <span>2025</span> <span>Yousef Alkhrissat</span>. Built with passion and precision.
+            &copy; <span>{new Date().getFullYear()}</span> <span>Yousef Alkhrissat</span>. Built with passion and precision.
           </div>
         </div>
       </div>
