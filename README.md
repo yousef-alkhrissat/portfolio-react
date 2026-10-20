@@ -23,7 +23,7 @@
 
 ## About
 
-Senior Backend Engineer with **6+ years** building production-grade systems that scale — from real-time telecom platforms and social networks to procurement SaaS and global e-commerce. I architect microservices, design event-driven pipelines, and own performance from database query to cloud deployment.
+Senior Backend Engineer with **7+ years** building production-grade systems that scale — from real-time telecom platforms and social networks to procurement SaaS and global e-commerce. I architect microservices, design event-driven pipelines, and own performance from database query to cloud deployment.
 
 I've shipped systems used across **three continents**, collaborated with distributed teams in the **US, EU, and MENA**, and hold a consistent track record of delivering measurable gains — including a **30% API performance improvement** in a high-load production environment.
 
