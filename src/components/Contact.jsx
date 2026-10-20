@@ -1,161 +1,159 @@
-import { useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
+import { EMAIL, PHONE, PHONE_LABEL, LINKEDIN } from '../data'
 
-const contacts = [
-  {
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" strokeWidth="2">
-        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-        <polyline points="22,6 12,13 2,6"/>
-      </svg>
-    ),
-    label: 'Email',
-    value: <a href="mailto:yousef.alkhrissat@gmail.com">yousef.alkhrissat@gmail.com</a>,
-  },
-  {
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" strokeWidth="2">
-        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.37 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9a16 16 0 0 0 6.29 6.29l.38-.35a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-      </svg>
-    ),
-    label: 'Phone',
-    value: <a href="tel:+962793773311">+962 7 9377 3311</a>,
-  },
-  {
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="#00d4ff">
-        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/>
-        <circle cx="4" cy="4" r="2"/>
-      </svg>
-    ),
-    label: 'LinkedIn',
-    value: <a href="https://linkedin.com/in/yousef-alkhrissat" target="_blank" rel="noopener noreferrer">linkedin.com/in/yousef-alkhrissat</a>,
-  },
-  {
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" strokeWidth="2">
-        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
-      </svg>
-    ),
-    label: 'Location',
-    value: 'Amman, Jordan',
-  },
+const AMMAN = 'Asia/Amman'
+const DAY_START = 9 * 60
+const DAY_END = 18 * 60
+
+const cities = [
+  ['San Francisco', 'America/Los_Angeles'],
+  ['New York', 'America/New_York'],
+  ['London', 'Europe/London'],
+  ['Berlin', 'Europe/Berlin'],
+  ['Amsterdam', 'Europe/Amsterdam'],
+  ['Stockholm', 'Europe/Stockholm'],
+  ['Cairo', 'Africa/Cairo'],
+  ['Riyadh', 'Asia/Riyadh'],
+  ['Dubai', 'Asia/Dubai'],
+  ['Amman', AMMAN],
 ]
 
+// Minutes the zone is ahead of UTC at the given moment.
+function offset(tz, at) {
+  const local = new Date(at.toLocaleString('en-US', { timeZone: tz }))
+  const utc = new Date(at.toLocaleString('en-US', { timeZone: 'UTC' }))
+  return Math.round((local - utc) / 60000)
+}
+
+const hhmm = m => {
+  const v = ((m % 1440) + 1440) % 1440
+  return `${String(Math.floor(v / 60)).padStart(2, '0')}:${String(v % 60).padStart(2, '0')}`
+}
+
+// Shared 09:00–18:00 working hours between Amman and the visitor's city.
+function overlap(tz, at) {
+  const a = offset(AMMAN, at)
+  const v = offset(tz, at)
+  const shift = a - v // Amman minus visitor, in minutes
+  let best = { hours: 0 }
+  for (const day of [-1440, 0, 1440]) {
+    const start = Math.max(DAY_START, DAY_START - shift + day)
+    const end = Math.min(DAY_END, DAY_END - shift + day)
+    if (end - start > best.hours * 60) best = { hours: (end - start) / 60, from: start + shift - day, to: end + shift - day }
+  }
+  return best
+}
+
+// Starts on the visitor's own city. A visitor already on Amman time
+// learns nothing from that, so they start on Berlin instead.
+function guessCity() {
+  try {
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone
+    const now = new Date()
+    if (offset(tz, now) === offset(AMMAN, now)) return 'Europe/Berlin'
+    return cities.find(c => c[1] === tz)?.[1] ?? tz
+  } catch {
+    return 'Europe/Berlin'
+  }
+}
+
 export default function Contact() {
-  const [status, setStatus] = useState('idle') // idle | loading | success | error
+  const [now, setNow] = useState(() => new Date())
+  const [tz, setTz] = useState(guessCity)
+  const [status, setStatus] = useState('idle') // idle | sending | sent | error
 
-  const handleSubmit = async e => {
+  useEffect(() => {
+    const t = setInterval(() => setNow(new Date()), 30000)
+    return () => clearInterval(t)
+  }, [])
+
+  const options = useMemo(() => (
+    cities.some(c => c[1] === tz) ? cities : [['Your time zone', tz], ...cities]
+  ), [tz])
+
+  const ammanTime = now.toLocaleTimeString('en-GB', { timeZone: AMMAN, hour: '2-digit', minute: '2-digit' })
+  const o = overlap(tz, now)
+  const hours = Number.isInteger(o.hours) ? o.hours : o.hours.toFixed(1)
+
+  const onSubmit = async e => {
     e.preventDefault()
-    setStatus('loading')
-
-    const formData = new FormData(e.target)
-    formData.append('access_key', '858177ec-ae75-49e2-ad96-5923a1b38a05')
-
+    const form = e.currentTarget
+    if (!form.checkValidity()) { form.reportValidity(); return }
+    setStatus('sending')
+    const data = new FormData(form)
+    data.append('access_key', '858177ec-ae75-49e2-ad96-5923a1b38a05')
+    data.append('subject', `Portfolio message from ${data.get('name')}`)
     try {
-      const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData })
-      const data = await res.json()
-      if (data.success) {
-        setStatus('success')
-        e.target.reset()
-        setTimeout(() => setStatus('idle'), 4000)
-      } else {
-        setStatus('error')
-        setTimeout(() => setStatus('idle'), 4000)
-      }
+      const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data })
+      const json = await res.json()
+      if (!json.success) throw new Error(json.message)
+      setStatus('sent')
+      form.reset()
     } catch {
       setStatus('error')
-      setTimeout(() => setStatus('idle'), 4000)
     }
   }
 
-  const busy = status === 'loading' || status === 'success'
-
   return (
-    <section id="contact" aria-label="Contact">
-      <div className="container">
-        <div className="reveal">
-          <span className="section-label">Get In Touch</span>
-          <h2 className="section-title">Let's Work Together</h2>
+    <section id="contact" className="contact" aria-labelledby="contact-title">
+      <div className="rows">
+        <h2 id="contact-title" className="row row-title" data-reveal>Reach me</h2>
+        <a className="row" href={`mailto:${EMAIL}?subject=Hello%20Yousef`} data-reveal>
+          yousef.alkhrissat<wbr />@gmail.com
+        </a>
+        <a className="row" href={`tel:${PHONE}`} data-reveal>{PHONE_LABEL}</a>
+        <a className="row" href={LINKEDIN} target="_blank" rel="noopener noreferrer" data-reveal>LinkedIn</a>
+        <p className="row" data-reveal>Amman, {ammanTime} now</p>
+        <div className="row row-live" data-reveal>
+          <label htmlFor="city">From</label>
+          {/* The visible label sizes the control; the select lies over it, unseen. */}
+          <span className="select-wrap">
+            <span className="select-label" aria-hidden="true">{options.find(c => c[1] === tz)?.[0]}</span>
+            <select id="city" value={tz} onChange={e => setTz(e.target.value)}>
+              {options.map(([name, zone]) => <option key={zone} value={zone}>{name}</option>)}
+            </select>
+          </span>
+          <output htmlFor="city" className="live-out">
+            {o.hours > 0
+              ? <>{hours} shared hours</>
+              : <>no shared hours</>}
+          </output>
         </div>
+        <p className="row-note" data-reveal>
+          {o.hours > 0
+            ? <>Our working days overlap from {hhmm(o.from)} to {hhmm(o.to)} your time, against 09:00–18:00 in Amman.</>
+            : <>Our 09:00–18:00 days don’t meet. Write anyway and we’ll find a slot.</>}
+        </p>
+      </div>
 
-        <div className="contact-grid">
-          <div className="reveal reveal-delay-1">
-            <p className="contact-tagline">
-              Open to senior backend roles, remote contracts, and exciting distributed-system
-              challenges. Whether you have a project in mind or just want to say hello — my
-              inbox is always open.
+      <div className="message" data-reveal-group>
+        <div className="message-intro" data-reveal>
+          <h3>Or leave a message</h3>
+          <p>A role, a contract, or a system that falls over at peak. I answer within two working days.</p>
+        </div>
+        <form className="form" onSubmit={onSubmit} noValidate>
+          <label>
+            <span>Name</span>
+            <input name="name" autoComplete="name" placeholder="Your name" required />
+          </label>
+          <label>
+            <span>Email</span>
+            <input name="email" type="email" autoComplete="email" placeholder="you@company.com" required />
+          </label>
+          <label className="form-wide">
+            <span>Message</span>
+            <textarea name="message" rows="5" placeholder="What are you building, and where does it hurt?" required />
+          </label>
+          <div className="form-foot">
+            <button className="btn" type="submit" disabled={status === 'sending'}>
+              {status === 'sending' ? 'Sending…' : 'Send message'}
+            </button>
+            <p className="form-status" role="status">
+              {status === 'sent' && 'Sent. Thank you, I’ll reply soon.'}
+              {status === 'error' && <>That didn’t go through. Email me at <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.</>}
             </p>
-            <div className="contact-items">
-              {contacts.map(c => (
-                <div className="contact-item" key={c.label}>
-                  <div className="contact-item-icon">{c.icon}</div>
-                  <div>
-                    <div className="contact-item-label">{c.label}</div>
-                    <div className="contact-item-value">{c.value}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
-
-          <div className="contact-form reveal reveal-delay-2">
-            <form onSubmit={handleSubmit} noValidate>
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="firstName">First Name</label>
-                  <input type="text" id="firstName" name="firstName" placeholder="John" required />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="lastName">Last Name</label>
-                  <input type="text" id="lastName" name="lastName" placeholder="Doe" />
-                </div>
-              </div>
-              <div className="form-group">
-                <label htmlFor="email">Email Address</label>
-                <input type="email" id="email" name="email" placeholder="john@example.com" required />
-              </div>
-              <div className="form-group">
-                <label htmlFor="subject">Subject</label>
-                <input type="text" id="subject" name="subject" placeholder="Project inquiry / Job opportunity..." />
-              </div>
-              <div className="form-group">
-                <label htmlFor="message">Message</label>
-                <textarea id="message" name="message" placeholder="Tell me about your project or opportunity..." required />
-              </div>
-              {status === 'error' && (
-                <p style={{ color: '#f87171', fontSize: '0.875rem', marginBottom: '0.75rem' }}>
-                  Something went wrong. Please try again or email me directly.
-                </p>
-              )}
-              <button type="submit" className="btn-submit" disabled={busy}
-                style={status === 'success' ? { background: 'linear-gradient(135deg,#10b981,#059669)' } : undefined}
-              >
-                {status === 'success' ? (
-                  <>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                      <polyline points="20 6 9 17 4 12"/>
-                    </svg>
-                    Message Sent!
-                  </>
-                ) : status === 'loading' ? (
-                  <>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ animation: 'spin 1s linear infinite' }}>
-                      <path d="M12 2a10 10 0 1 0 10 10" strokeLinecap="round"/>
-                    </svg>
-                    Sending…
-                  </>
-                ) : (
-                  <>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                      <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
-                    </svg>
-                    Send Message
-                  </>
-                )}
-              </button>
-            </form>
-          </div>
-        </div>
+        </form>
       </div>
     </section>
   )
