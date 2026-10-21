@@ -1,34 +1,47 @@
-import { EMAIL, CV } from '../data'
+import { CV } from '../data'
+
+const facts = [
+  ['7 years', 'building backends since 2019'],
+  ['10 roles', 'across Amman and remote'],
+  ['30%', 'faster API responses at UBA'],
+  ['3 regions', 'teams in the US, EU and MENA'],
+]
 
 export default function Hero() {
   return (
-    <header id="top" className="hero">
-      <div className="hero-photo">
+    <>
+      <header id="top" className="hero">
         <img
+          className="hero-img"
           src="/images/world/amman-dusk.jpg"
-          alt="Amman at dusk, the Jordan Gate towers lit above the city"
+          alt=""
           width="2400" height="1600"
           fetchpriority="high"
         />
-      </div>
-
-      <div className="hero-body">
-        <div className="hero-aside">
-          <p className="hero-lead">
-            Senior backend engineer in Amman. I build the queues, caches and call routing
-            behind products for teams in the US, EU and MENA.
+        <div className="in hero-in">
+          <p className="hero-who">Yousef Alkhrissat · Senior backend engineer in Amman</p>
+          <h1>I build the systems behind online stores, phone platforms and learning apps.</h1>
+          <p className="hero-sub">
+            APIs, queues and real-time services in NestJS, TypeScript and Laravel. Right now
+            I’m working on e-commerce and loyalty points at Merit Incentives.
           </p>
           <div className="hero-actions">
-            <a className="btn" href={`mailto:${EMAIL}?subject=Hello%20Yousef`}>Email me</a>
-            <a className="link" href={CV} download>Download CV</a>
+            <a className="btn" href="#work">See my work</a>
+            <a className="btn btn-ghost" href={CV} download>Download CV</a>
           </div>
         </div>
+      </header>
 
-        <h1 className="monument" aria-label="Yousef Alkhrissat">
-          <span className="monument-line">Yousef</span>
-          <span className="monument-line">Alkhrissat</span>
-        </h1>
-      </div>
-    </header>
+      <section className="facts" aria-label="At a glance">
+        <dl className="in facts-in">
+          {facts.map(([num, label]) => (
+            <div key={num}>
+              <dt>{num}</dt>
+              <dd>{label}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+    </>
   )
 }

@@ -1,11 +1,10 @@
 import { useEffect } from 'react'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
-import Intro from './components/Intro'
-import Work from './components/Work'
 import Cases from './components/Cases'
-import Stack from './components/Stack'
+import Projects from './components/Projects'
 import Experience from './components/Experience'
+import About from './components/About'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 
@@ -13,9 +12,8 @@ import Footer from './components/Footer'
 // Siblings inside one [data-reveal-group] are staggered by 70ms.
 function useReveal() {
   useEffect(() => {
-    const groups = document.querySelectorAll('[data-reveal-group]')
-    groups.forEach(g => {
-      g.querySelectorAll('[data-reveal]').forEach((el, i) => el.style.setProperty('--d', `${i * 70}ms`))
+    document.querySelectorAll('[data-reveal-group]').forEach(g => {
+      g.querySelectorAll('[data-reveal]').forEach((el, i) => el.style.setProperty('--d', `${Math.min(i, 6) * 70}ms`))
     })
     // Checked on scroll rather than with an IntersectionObserver: a jump
     // (anchor link, End key) can carry an element from below the screen to
@@ -24,10 +22,13 @@ function useReveal() {
     let frame = 0
     const check = () => {
       frame = 0
-      const line = window.innerHeight * 0.88
+      const line = window.innerHeight * 0.9
       pending = pending.filter(el => {
-        if (el.getBoundingClientRect().top > line) return true
-        el.classList.add('in')
+        const r = el.getBoundingClientRect()
+        if (r.top > line) return true
+        // Already scrolled past (a jump to a later section): show it at once.
+        if (r.bottom < 0) el.style.transition = 'none'
+        el.classList.add('is-in')
         return false
       })
       if (!pending.length) window.removeEventListener('scroll', onScroll)
@@ -51,11 +52,10 @@ export default function App() {
       <Nav />
       <main>
         <Hero />
-        <Intro />
-        <Work />
         <Cases />
-        <Stack />
+        <Projects />
         <Experience />
+        <About />
         <Contact />
       </main>
       <Footer />

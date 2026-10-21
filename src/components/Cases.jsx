@@ -1,39 +1,27 @@
-import { useState } from 'react'
 import { cases } from '../data'
 
 export default function Cases() {
-  const [hot, setHot] = useState(null)
-
   return (
-    <section id="cases" className="cases" aria-labelledby="cases-title" data-reveal-group>
-      <h2 id="cases-title" className="cases-title" data-reveal>Four problems, solved</h2>
+    <section id="work" className="cases" aria-labelledby="work-title">
+      <div className="in">
+        <h2 id="work-title" className="section-title" data-reveal>Selected work</h2>
+        <p className="section-lede" data-reveal>Four problems from real products, and what I did about them.</p>
 
-      <div className="band" data-reveal onMouseLeave={() => setHot(null)}>
-        {cases.map((c, i) => (
-          <figure
-            key={c.id}
-            className={`band-panel${hot === c.id ? ' is-hot' : ''}`}
-            style={{ '--grow': c.grow }}
-            onMouseEnter={() => setHot(c.id)}
-          >
-            <img src={`/images/projects/${c.id}.jpg`} alt={`${c.where.split(' · ')[0]} home page`} width="1280" height="800" loading="lazy" />
-            {i === 0 && <figcaption className="band-title">{c.title}</figcaption>}
-          </figure>
-        ))}
-      </div>
-
-      <div className="case-list">
         {cases.map(c => (
-          <article
-            key={c.id}
-            className={`case${hot && hot !== c.id ? ' is-dim' : ''}`}
-            data-reveal
-            onMouseEnter={() => setHot(c.id)}
-            onMouseLeave={() => setHot(null)}
-          >
-            <h3>{c.title}</h3>
-            <p className="case-where">{c.where}</p>
-            <p>{c.text}</p>
+          <article key={c.id} className="case" data-reveal-group>
+            <a className="case-shot" href={c.link} target="_blank" rel="noopener noreferrer" data-reveal>
+              <img src={`/images/projects/${c.id}.jpg`} alt={`${c.where} website`} width="1280" height="800" loading="lazy" />
+            </a>
+            <div className="case-text" data-reveal>
+              <p className="case-where">{c.where} · {c.company}</p>
+              <h3>{c.title}</h3>
+              <dl>
+                <dt>The problem</dt><dd>{c.problem}</dd>
+                <dt>What I did</dt><dd>{c.did}</dd>
+                <dt>The result</dt><dd>{c.result}</dd>
+              </dl>
+              <a className="link" href={c.link} target="_blank" rel="noopener noreferrer">Visit {c.where}</a>
+            </div>
           </article>
         ))}
       </div>
