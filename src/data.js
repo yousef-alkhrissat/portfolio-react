@@ -21,30 +21,35 @@ export const projects = [
   { id: 'rateme', name: 'RateMe', company: 'Freelance', kind: 'Peer-review platform', year: 'Freelance', link: 'https://rateme.gaztech.io/' },
 ]
 
+// The four projects told as stories, in plain words for non-engineers.
 export const cases = [
   {
-    id: 'sowtek', grow: 5,
-    title: 'Call state that survives the rush',
-    where: 'Sowtek · Axelerated Solutions',
-    text: 'Live call state moved out of MySQL into Redis keys with TTLs, so peak traffic stopped hammering the database. RabbitMQ carries the telecom events behind it, isolated per tenant.',
+    id: 'sowtek', where: 'Sowtek', company: 'Axelerated Solutions', link: 'https://sowtek.com/',
+    title: 'Phone calls that stay live at peak traffic',
+    problem: 'Every live call was tracked in the main database, so busy hours slowed the whole platform down.',
+    did: 'Moved live call state into Redis with keys that expire on their own, and routed telecom events through RabbitMQ, kept separate for each client company.',
+    result: 'Peak traffic stopped hammering the database, and each client’s data stays isolated.',
   },
   {
-    id: 'shooty', grow: 2,
-    title: '30% faster, platform-wide',
-    where: 'Shooty · UBA',
-    text: 'GraphQL resolvers rebuilt over Elasticsearch and Redis cut API response times by 30%. Heavy transactions moved to their own services over RabbitMQ.',
+    id: 'shooty', where: 'Shooty', company: 'UBA', link: 'https://shooty.com/',
+    title: 'An API that answers 30% faster',
+    problem: 'Responses got slower as customers and data grew.',
+    did: 'Rebuilt the GraphQL API on top of Elasticsearch and Redis, and moved heavy transactions into their own services over RabbitMQ.',
+    result: 'Response times dropped by 30% across the platform.',
   },
   {
-    id: 'hellocode', grow: 3,
-    title: 'A code runner for children',
-    where: 'Hellocode · Hello World Kids',
-    text: 'A LeetCode-style judge that runs student code on isolated AWS infrastructure. Queues absorb a whole classroom submitting at once, and answers still come back in under a second.',
+    id: 'hellocode', where: 'Hellocode', company: 'Hello World Kids', link: 'https://hellocode.me/en/',
+    title: 'A code checker built for a classroom',
+    problem: 'Children needed instant feedback on the code they wrote, and a whole class submits at the same moment.',
+    did: 'Designed a LeetCode-style judge that runs each student’s code safely on isolated AWS servers, with queues to absorb the rush.',
+    result: 'Answers come back in under a second, even in the middle of class.',
   },
   {
-    id: 'zalatimo', grow: 2,
-    title: 'DHL shipping, by the gram',
-    where: 'Zalatimo · Rhinosoft',
-    text: 'The billing plugin could not price international DHL parcels. A locale-triggered matrix of fixed fee × weight priced them anyway, and orders abroad went through.',
+    id: 'zalatimo', where: 'Zalatimo', company: 'Rhinosoft', link: 'https://zalatimo.com/en',
+    title: 'Shipping abroad that a plugin couldn’t price',
+    problem: 'The store’s billing plugin had no way to price DHL parcels sent outside Jordan.',
+    did: 'Built a fee-by-weight price table that switches on by the customer’s country.',
+    result: 'Customers abroad can check out with the right shipping price.',
   },
 ]
 
@@ -200,5 +205,4 @@ export const stack = [
 
 export const credits = [
   { title: 'Amman Skyline at Sunset', by: 'Ibrahim nabeel salah', licence: 'CC BY 4.0', page: 'https://commons.wikimedia.org/w/index.php?curid=194095059' },
-  { title: 'Wisconsin Bell Telephone Company Switchboard', by: 'Gary Langebartels / FortepanIowa', licence: 'CC BY-SA 4.0', page: 'https://commons.wikimedia.org/wiki/File:Wisconsin_Bell_Telephone_Company_Switchboard.jpg' },
 ]

@@ -3,30 +3,22 @@ import { CV } from '../data'
 
 const links = [
   ['Work', '#work'],
-  ['Stack', '#stack'],
   ['Experience', '#experience'],
+  ['About', '#about'],
   ['Contact', '#contact'],
 ]
 
-// Two bars share these links: one laid over the hero photograph, and a plain
-// fixed bar that slides in once the hero has left the screen.
+// One bar: transparent over the hero photo, then solid once the hero has gone.
 export default function Nav() {
-  const [docked, setDocked] = useState(false)
+  const [solid, setSolid] = useState(false)
   const [open, setOpen] = useState(false)
 
-  // Docked once the hero has gone, and stowed again while the work names
-  // pass under the top of the screen, so nothing covers them.
   useEffect(() => {
     const hero = document.getElementById('top')
-    const work = document.getElementById('work')
-    if (!hero || !work) return
-    let pastHero = false, overWork = false
-    const sync = () => setDocked(pastHero && !overWork)
-    const heroIo = new IntersectionObserver(([e]) => { pastHero = !e.isIntersecting; sync() }, { threshold: 0.08 })
-    const workIo = new IntersectionObserver(([e]) => { overWork = e.isIntersecting; sync() }, { rootMargin: '0px 0px -92% 0px' })
-    heroIo.observe(hero)
-    workIo.observe(work)
-    return () => { heroIo.disconnect(); workIo.disconnect() }
+    if (!hero) return
+    const io = new IntersectionObserver(([e]) => setSolid(!e.isIntersecting), { rootMargin: '-72px 0px 0px 0px' })
+    io.observe(hero)
+    return () => io.disconnect()
   }, [])
 
   useEffect(() => {
@@ -37,26 +29,18 @@ export default function Nav() {
     return () => window.removeEventListener('keydown', onKey)
   }, [open])
 
-  const list = (
-    <ul className="nav-links" role="list">
-      {links.map(([label, href]) => (
-        <li key={href}><a href={href}>{label}</a></li>
-      ))}
-      <li><a href={CV} download>CV</a></li>
-    </ul>
-  )
-
   return (
     <>
-      <nav className="nav nav-over" aria-label="Main">
-        {list}
-        <button className="nav-menu" onClick={() => setOpen(true)} aria-expanded={open} aria-controls="menu">Menu</button>
-      </nav>
-
-      <nav className={`nav nav-dock${docked ? ' is-on' : ''}`} aria-label="Sticky" aria-hidden={!docked} inert={docked ? undefined : ''}>
-        <a href="#top" className="nav-name">Yousef Alkhrissat</a>
-        {list}
-        <button className="nav-menu" onClick={() => setOpen(true)} aria-expanded={open} aria-controls="menu">Menu</button>
+      <nav className={`nav${solid ? ' is-solid' : ''}`} aria-label="Main">
+        <div className="in nav-in">
+          <a href="#top" className="nav-name">Yousef Alkhrissat</a>
+          <ul className="nav-links" role="list">
+            {links.map(([label, href]) => <li key={href}><a href={href}>{label}</a></li>)}
+            <li><a href={CV} download>CV</a></li>
+          </ul>
+          <a href="#contact" className="btn btn-sm nav-cta">Hire me</a>
+          <button className="nav-menu" onClick={() => setOpen(true)} aria-expanded={open} aria-controls="menu">Menu</button>
+        </div>
       </nav>
 
       <div id="menu" className={`menu${open ? ' is-open' : ''}`} role="dialog" aria-modal="true" aria-label="Menu" inert={open ? undefined : ''}>
